@@ -1,0 +1,17 @@
+<div *ngIf="isLoaded" class="detail-container-div">
+    <div class="back-icon" (click)="goBack()">&larr;</div>
+    <div class="detail-container">
+        <img [src]="showDetails['image'].medium" alt=""/>
+        <div class="show-name"> {{showDetails['name']}} </div>
+        <div class="show-summary" [innerHTML]="showDetails['summary']"> </div>
+        <div><span>Network:</span> {{showDetails['network'].name}} </div>
+        <div><span>Rating:</span> {{showDetails['rating'].average}} </div>
+        <div><span>Status:</span> {{showDetails['status']}} </div>
+        <div><span>Language:</span> {{showDetails['language']}} </div>
+        <div><span>Show Type:</span> {{showDetails['type']}} </div>
+        <div><span>Genre:</span> {{showDetails['genres'].join(' | ')}}</div>
+        <div><span>Total Seasons:</span> {{showSeasonList.length}}</div>
+        <!-- <div><span>Show URL:</span> {{showDetails['url']}} </div> -->
+        <div>Click <a [href]="showDetails['url']" target="_blank">here</a> for more details</div>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="header-container">
+    <div class="logo" (click)="navigateToHome()">
+        <img src="//static.tvmaze.com/images/tvm-header-logo.png" alt="" width="90" height="30"/>
+    </div>
+    <div class="search-wrapper">
+        <form  [formGroup]="myForm" >
+            <div class="search-container">
+                <input formControlName="searchTerm" required
+                class="search-input" type="text" placeholder="Search" value="">
+                <button class="close-icon" type="reset"></button>
+                <i class="material-icons search-icon">search</i>
+            </div>
+            <ul *ngIf="results && results.length && myForm.value.searchTerm" class="filter-select"
+                [style.height]="results.length > 5 ? '400px' : 'auto'"
+                [style.overflow]="results.length > 5 ? 'auto' : 'hidden'">
+                <ng-container *ngFor="let result of results; trackBy: showsTrackByMethod;">
+                    <li *ngIf="result.show.image != null" class="filter-select-list">
+                        <div [routerLink]="['/show-details/', result.show.id]">
+                            <img src="{{result.show.image.medium}}" alt="" width="100" height="100">
+                            <p class="artist-name" id=""> {{result.show.name}}</p>
+                        </div> 
+                    </li>
+                </ng-container>
+            </ul>
+            <ul *ngIf="results && results.length == 0 && myForm.value.searchTerm" 
+                class="filter-select filter-select-empty">
+                <li> No Results</li>
+            </ul>
+        </form>
+    </div>
+</div>
